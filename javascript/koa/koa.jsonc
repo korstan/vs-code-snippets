@@ -15,7 +15,16 @@
   "Route handler": {
     "prefix": "koar",
     "body": [
-      // TODO
+      "router.${1|get,post,put,patch,delete|}(${2:'/api/'}, async (ctx, next) => {",
+      "\ttry {",
+      "\t\tctx.body = { message: 'OK' };",
+      "\t\tctx.status = 200;",
+      "\t} catch (error) {",
+      "\t\tctx.body = { error: { message: 'Internal Server Error' } };",
+      "\t\tctx.status = 500;",
+      "\t}",
+      "\tawait next();",
+      "});"
     ],
     "description": "Make handler for route with try/catch blocks (for 500 error handling)"
   }
